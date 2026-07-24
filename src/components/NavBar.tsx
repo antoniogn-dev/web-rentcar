@@ -1,6 +1,6 @@
-import { Gauge, Menu, User, X } from "lucide-react"
+import { ChevronLeft, Gauge, Menu, User, X } from "lucide-react"
 import { useEffect, useState } from "react"
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, type NavLinkRenderProps } from "react-router-dom"
 
 const NavBar = () => {
 
@@ -34,6 +34,12 @@ const NavBar = () => {
             path: "/about"
         }
     ]
+
+    // MobileNavLink Clases
+    const getNavLinkClass = ({ isActive }: NavLinkRenderProps) =>
+        isActive
+            ? "text-white p-5 bg-zinc-950 transition"
+            : "hover:text-white text-zinc-800 border-b border-b-zinc-200 p-5 hover:bg-zinc-900 transition"
 
     return (
         <header className={`fixed cursor-pointer top-3.5 left-1/2 -translate-x-1/2 z-90 transition-all duration-300 rounded-full h-15 ${isScrolled ? "h-14 bg-zinc-900/50 backdrop-blur-xl border border-white/10 scale-95 w-[90%] max-w-3xl" : "bg-zinc-200 w-[95%] max-w-4xl"}`}>
@@ -85,20 +91,56 @@ const NavBar = () => {
                     {/* 🟦 Mobile Nav Icon */}
                     <div className="md:hidden p-1 rounded-md">
                         <button className="md:hidden text-white hover:text-zinc-400 transition-colors" onClick={() => setIsOpen(!isOpen)}>
-                            
+
                             {
-                                isOpen ? 
-                                <X size={34} className="text-zinc-800"/> 
-                                : 
-                                <Menu size={40} className="text-zinc-800 mt-2" />
+                                isOpen ?
+                                    <X size={34} className="text-zinc-800" />
+                                    :
+                                    <Menu size={40} className="text-zinc-800 mt-2" />
                             }
-                            
-                            
+
+
                         </button>
                     </div>
 
                     {/* 🟦 Mobile Nav menu */}
-                    {/* <div className=""></div> */}
+
+                    <div className={`absolute md:hidden -top-5 w-full h-screen bg-zinc-50 backdrop-blur-lg transition-transform duration-300 ease-in-out z_[999] flex flex-col justify-between ${isOpen ? "-translate-x-6" : "translate-x-375"
+                        }`}>
+
+                        {/* MobileNav Header */}
+                        <div className="flex items-center h-20 border-b border-b-zinc-500/80">
+                            <button onClick={() => setIsOpen(false)} className="centered-row p-4 gap-2">
+                                <ChevronLeft className="text-zinc-800" />
+                                <p className="text-lg clash-display text-zinc-800">Back</p>
+                            </button>
+                        </div>
+
+                        {/* MobileNav Links */}
+
+                        <div className="col flex-1 text-zinc-800 pb-4">
+                            {
+                                ["/", "/fleet", "/about", "/rent"].map((path, i) => (
+                                    <NavLink key={i} to={path} className={getNavLinkClass}>
+                                        <button onClick={() => setIsOpen(false)} className="text-xl w-full clash-display">
+                                            {
+                                                ["Home", "Fleet", "About Us", "Rent Now"][i]
+                                            }
+                                        </button>
+                                    </NavLink>
+                                ))
+                            }
+                        </div>
+
+                        {/* MobileNav Footer */}
+
+                        <div className="text-center text-sm pt-8 pb-8 text-zinc-500">
+
+                            &copy; {new Date().getFullYear()} <span className="font-semibold">DriveWell</span> All rights reserved.
+
+                        </div>
+
+                    </div>
 
                 </nav>
 
