@@ -96,7 +96,9 @@ const NavBar = () => {
                                 isOpen ?
                                     <X size={34} className="text-zinc-800" />
                                     :
-                                    <Menu size={40} className="text-zinc-800 mt-2" />
+                                    <Menu size={40} className={`${
+                                        isScrolled ? "text-zinc-200" : "text-zinc-800 mt-2"
+                                    }`} />
                             }
 
 

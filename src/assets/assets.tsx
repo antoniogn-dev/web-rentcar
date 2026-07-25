@@ -47,7 +47,15 @@ const images = {
   carin,
 };
 
-const featuredServices = [
+export interface FleetCard {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  imageSrc: string;
+  link: string;
+}
+
+const featuredServices: FleetCard[] = [
   {
     title: "Luxury Sedans",
     description:

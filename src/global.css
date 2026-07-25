@@ -77,7 +77,7 @@ body {
 /* Custom Components & Effects */
 @layer components {
   .card-hover {
-    @apply transition-all duration-300 hover:translate-y-[-5px] hover:shadow-xl;
+    @apply transition-all duration-300 hover:translate-y-1.25 hover:shadow-xl;
     box-shadow: 0 4px 10px rgba(0, 179, 255, 0); /* Subtle initial shadow */
   }
 
@@ -96,11 +96,11 @@ body {
   }
 
   .grad-text {
-    @apply text-transparent bg-gradient-to-tr  bg-clip-text;
+    @apply text-transparent bg-linear-to-tr  bg-clip-text;
   }
 
   .grad1 {
-    @apply text-transparent bg-gradient-to-tr bg-clip-text from-zinc-300 to-zinc-700;
+    @apply text-transparent bg-linear-to-tr bg-clip-text from-zinc-300 to-zinc-700;
   }
 
   .heading-2 {
