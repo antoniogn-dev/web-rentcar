@@ -106,7 +106,12 @@ const featuredServices: FleetCard[] = [
   },
 ];
 
-const carUsageCategories = [
+export interface UsageCategories {
+  name: string
+  image: string
+}
+
+const carUsageCategories: UsageCategories[] = [
   {
     name: "Business Trips",
     image: images.car2,
